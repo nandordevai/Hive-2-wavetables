@@ -1,18 +1,9 @@
-NumFrames = 5 // number of waveforms (“frames”) in the wavetable
-  // First, a sawtooth in frame 0
-  // Learn: "phase" goes from 0 to 1
-  // Learn: to work on specific frames, specify Start and End
-Wave start=0 end=0 "-phase"
-  // Then a sine wave in frame 1
-Wave start=1 end=1 "sin(2*pi*phase)"
-  // Next, a triangle in frame 2
-Wave start=2 end=2 "-abs(1-2*phase)"
-  // A square in frame 3
-  // Learn: comparisons ('<' here) return 1 if true, 0 if false
-Wave start=3 end=3 "phase<0.5"
-  // Narrower pulse in frame 4
-Wave start=4 end=4 "phase<0.05"
-  // Learn: collect useful tricks...
-Spectrum lowest=0 highest=0 "0" // DC-removal trick
-Normalize start=0 end=3
-Normalize start=4 end=4 db=-5 // different level for the narrow pulse
+Info = "UHM script test"
+NumFrames = 3
+Wave Start = 0 End = 0 "-phase"
+Wave Start = 0 End = 0 Blend = add "sin(phase * 20)"
+
+Wave Start = 1 End = 1 "-phase"
+Wave Start = 1 End = 1 Blend = add Direction=backward "sin(2 * pi * phase - 2 * x)"
+
+// Import
