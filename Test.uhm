@@ -1,9 +1,13 @@
-Info = "UHM script test"
-NumFrames = 3
-Wave Start = 0 End = 0 "-phase"
-Wave Start = 0 End = 0 Blend = add "sin(phase * 20)"
+info = "UHM script test"
+numframes = 11
+wave start = 0 end = 0 "-phase"
+wave start = 0 end = 0 blend = add "sin(phase * 20)"
 
-Wave Start = 1 End = 1 "-phase"
-Wave Start = 1 End = 1 Blend = add Direction=backward "sin(2 * pi * phase - 2 * x)"
+wave start = 9 end = 9 "-phase"
+wave start = 9 end = 9 blend = add direction = backward "sin(2 * pi * phase - 2 * x)"
 
-// Import
+interpolate type = morph1
+
+normalize base = each
+
+//Import Start = 0 End = 0 From = 2 "KS.uhm"
