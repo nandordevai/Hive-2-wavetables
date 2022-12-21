@@ -1,0 +1,2 @@
+Envelope L0 = 1 T1 = 2048 L1 = 0 // simple saw envelope
+Wave start = 10 end = 10 "env(index) * (1 - 2 * ((phase * (1 + 0.25 * frame) % 1) > 0.5))"
