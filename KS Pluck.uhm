@@ -1,0 +1,18 @@
+Info "Karplus-Strong-like wavetable with pluck articulation"
+NumFrames = 101
+
+Seed = 12611
+Wave start=0 end=0 "rand / (1 + 10 * phase)"  // attack impulse
+Phase start=0 end=0 "rands * 2 * pi - pi"
+Wave start=1 end=5 "y + 0.10 * ( main_fi(frame-1, index) - y)" // attack portion
+
+Seed = 811564 // new seed for body portion
+Wave start=6 end=6 "rand / (1 + 10 * phase)" // body impulse
+Wave start=7 "y + 0.20 * ( main_fi(frame-1, index) - y)" // body portion
+
+Spectrum lowest=0 highest=0 "0" // remove DC offset
+Phase "rands * 2 * pi - pi" // set all phases identical to frame 0
+
+Normalize start=0 end=0 db=0 // normalize attack impulse
+Normalize start=1 end=5 db=-6 // normalize attack portion
+Normalize start=6 db=3 // normalize body portion

@@ -1,0 +1,9 @@
+Info "Karplus-Strong-like wavetable with balanced noise spectrum and phase correction"
+NumFrames = 101
+Seed = 73616
+Spectrum start=0 end=0 "rand / (1 + 10 * phase)"
+Phase start=0 end=0 "rands * 2 * pi - pi"
+Wave start=1 "y + 0.15 * ( main_fi(frame-1, index) - y)"
+Spectrum lowest=0 highest=0 "0" // remove DC offset
+Phase "rands * 2 * pi - pi" // set all phases identical to frame 0
+Normalize base=all
