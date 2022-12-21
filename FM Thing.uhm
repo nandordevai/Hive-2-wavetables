@@ -1,0 +1,12 @@
+Info "FM thing that uses two envelopes"
+NumFrames = 10
+
+Seed 71915651
+Envelope L0=0.3 T1=0.2 L1=1.0 T2=0.8 L2=0.03
+Spectrum lowest=1 highest=16 "env(randf + table) * phase * pi"
+Wave start=6 "bandpass(x, 0.3, 0.9)"
+
+Envelope L0=0.3 T1=0.5 L1=0.0 T2=0.0 L2=1.0 T3=0.1 L3=0.0 T4=0.0 L4=0.35 T5=0.3 L5=0.05 T6=0.0 L6=0.1 T7=0.1 L7=0.3
+Wave start=2 "sin(2 * pi * (phase + (x * env(table))))"
+
+Normalize base=each

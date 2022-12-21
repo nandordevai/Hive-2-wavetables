@@ -1,0 +1,58 @@
+NumFrames=100
+
+Info "Ranoka - Wobbly Bass wavetable with delay effect that gets brighter as it fades out. Set Auto to -0.70 and Auto Mode to forward loop. Might need to boost the volume, or use the compressor etc."
+
+// linear exponential quadric
+Envelope curve=quadric L0=0.0 T1=0.05 L1=1 T2=0.1 L2=0.90 T3=0.75 L3=0.00
+
+//Wave "env(phase)" //drzhnn trick to visualize wavetable
+
+//Create the Bass sound and 9 delay echos
+Wave start=0 end=9 "sin (2*pi*phase * 1)"
+Wave start=0 end=9 "sin (2*pi*phase + x)"
+Wave start=0 end=9 "sin (2*pi*phase + x * (8 - (table * 8) ))"
+
+Wave start=10 end=19 "sin (2*pi*phase * 1)"
+Wave start=10 end=19 "sin (2*pi*phase + x)"
+Wave start=10 end=19 "sin (2*pi*phase + x * (16 - (table * 16) ))"
+
+Wave start=20 end=29 "sin (2*pi*phase * 1)"
+Wave start=20 end=29 "sin (2*pi*phase + x)"
+Wave start=20 end=29 "sin (2*pi*phase + x * (32 - (table * 32) ))"
+
+Wave start=30 end=39 "sin (2*pi*phase * 1)"
+Wave start=30 end=39 "sin (2*pi*phase + x)"
+Wave start=30 end=39 "sin (2*pi*phase + x * (64 - (table * 64) ))"
+
+Wave start=40 end=49 "sin (2*pi*phase * 1)"
+Wave start=40 end=49 "sin (2*pi*phase + x)"
+Wave start=40 end=49 "sin (2*pi*phase + x * (128 - (table * 128) ))"
+
+Wave start=50 end=59 "sin (2*pi*phase * 1)"
+Wave start=50 end=59 "sin (2*pi*phase + x)"
+Wave start=50 end=59 "sin (2*pi*phase + x * (256 - (table * 256) ))"
+
+Wave start=60 end=69 "sin (2*pi*phase * 1)"
+Wave start=60 end=69 "sin (2*pi*phase + x)"
+Wave start=60 end=69 "sin (2*pi*phase + x * (512 - (table * 512) ))"
+
+Wave start=70 end=79 "sin (2*pi*phase * 1)"
+Wave start=70 end=79 "sin (2*pi*phase + x)"
+Wave start=70 end=79 "sin (2*pi*phase + x * (1024 - (table * 1024) ))"
+
+Wave start=80 end=89 "sin (2*pi*phase * 1)"
+Wave start=80 end=89 "sin (2*pi*phase + x)"
+Wave start=80 end=89 "sin (2*pi*phase + x * (2048 - (table * 2048) ))"
+
+Wave start=90 end=99 "sin (2*pi*phase * 1)"
+Wave start=90 end=99 "sin (2*pi*phase + x)"
+Wave start=90 end=99 "sin (2*pi*phase + x * (4096 - (table * 4096) ))"
+
+Wave start=0 end=100 "x * env(table)" // Apply the envelope
+
+Wave "lowpass(x, 0.75, 0.2) * 0.8" // Lowpass to dampen high end
+Wave blend=add "tanh( lowpass(x, 0.2, 0.5) * 0.3)" // Urs trick from Karplus-strong tutorial to add some low end
+
+// Don't seem to make much difference
+//Spectrum lowest=0 highest=0 "0" // remove DC offset
+//Normalize base=all

@@ -1,0 +1,3 @@
+NumFrames=256
+Envelope L0=2.2 T1=1 L1=0
+Wave "sin( 2*pi*phase + env(table) * abs(lowpass(y,0.94,0)) )"

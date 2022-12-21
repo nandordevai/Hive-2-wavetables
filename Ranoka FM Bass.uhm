@@ -1,0 +1,4 @@
+Wave "sin(2 * pi * phase * 4)"
+Wave "sin(2 * pi * phase + x * (16 - (table * 16) ))"
+Wave "sin(2 * pi * phase + x * table + 2)"
+Wave "sin(2 * pi * phase + x - (e * (4 * table)))"

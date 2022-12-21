@@ -1,0 +1,12 @@
+NumFrames=256
+
+Wave "sin(2 * pi * phase * 7)"
+Envelope curve=quadric L0=0.03 T1=0.1 L1=0
+Wave "sin(2 * pi * (phase + x * env(table)) * 5)"
+Envelope curve=quadric L0=0.2 T1=0.2 L1=0
+Wave "sin(2 * pi * (phase + x * env(table)) * 2)"
+Envelope curve=quadric L0=0.1 T1=1 L1=0.2
+Wave "x * env(table)"
+Envelope curve=quadric L0=0 T1=0.5 L1=0.05 T2=0.5 L2=0
+Wave blend=add "sin(2 * pi * phase * 8) * env(table)"
+Wave "sin(2 * pi * (phase + x))"

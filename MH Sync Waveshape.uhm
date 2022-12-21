@@ -1,0 +1,19 @@
+Info "MH Sync with waveshaping\nBy Mark Holt\n"
+
+NumFrames=256
+
+//Waveshaper transfer function
+Wave "0.25 * sin(12 * pi * phase) + (phase - 0.5)"
+
+Spectrum lowest=0 highest=0 "0"
+Normalize Metric=peak Base=each
+
+//Input (Sync wavetable)
+Wave target=aux2 "2 * pi * ((phase % (1 - 0.941176 * table ^ 0.368)) / (1 - 0.941176 * table ^ 0.368))"
+Wave target=aux1 "sin(sin(1 * aux2) / (1 - 0.9 * cos(3 * aux2)))"
+
+//Output
+Wave "main_fi(frame, 1024 * (aux1 + 1))"
+
+Spectrum lowest=0 highest=0 "0"
+Normalize Metric=peak Base=each

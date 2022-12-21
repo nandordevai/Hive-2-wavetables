@@ -1,0 +1,15 @@
+Info "Ranoka - Metallic Bass. Set Hives voice to Mono, boost output and add compression if quiet. Set Tables to 2 and adjust Pos morph between sine and square timbre. Set Auto to -1 and Auto Mode to one shot. Better with low notes?"
+
+NumFrames = 256
+
+Envelope L0=2.2 T1=1 L1=0
+
+Wave "sin( 2*pi*phase + x * (10 - (table * 10)) )"
+
+Wave start=0 end=127 "sin( 2*pi*phase + env(table) * lowpass(y, 0.6, 0.5) )"
+Wave start=0 end=127 "sin( 2*pi*phase + x * 16 * (1 - table) )"
+Wave start=0 end=127 "sin( 2*pi*phase + x * (10 - (table * 10)) )"
+
+Wave start=128 end=255 "sin( 2*pi*phase + env(table) * abs(lowpass(y, 0.6, 0.5)) )"
+Wave start=128 end=255 "sin( 2*pi*phase + x * 16 * (1 - table) )"
+Wave start=128 end=255 "sin( 2*pi*phase + x * (10 - (table * 10)) )"

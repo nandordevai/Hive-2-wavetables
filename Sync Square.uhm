@@ -1,0 +1,3 @@
+// Emulate a synced square wave
+NumFrames = 256
+Wave "-1 + 2 * (frac(phase*(7*table+1)) > 0.5)"

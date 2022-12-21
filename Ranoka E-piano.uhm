@@ -1,0 +1,9 @@
+Info "Ranoka - E Piano-ish. Adjust Auto to control speed of dampening and set Auto Mode to one shot."
+
+NumFrames = 256
+
+Envelope L0=2.2 T1=1 L1=0
+
+Wave "sin( 2*pi*phase + env(table) * lowpass(y, 0.2, 0)^2 )"
+Wave "x * 0.25" // dampen amount
+Wave "sin( 2*pi*phase + x * (16 - (table * 16)) )"

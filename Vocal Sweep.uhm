@@ -1,0 +1,13 @@
+Info "Vocal sweep"
+
+NumFrames = 40
+
+Wave "sin(2 * pi * phase * 10 + table * 2)"
+Wave "sin(2 * pi * phase * (1 + frame - table * 8))" blend=multiply
+
+Envelope L0=0 T1=0.1 L1=1 T2=0.9 L2=0
+Wave "x * env(phase) ^ 2"
+Wave "tanh(x * 3)"
+
+Spectrum lowest=0 highest=0 "0"
+Normalize base=each

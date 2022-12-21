@@ -1,0 +1,30 @@
+Info "Yamaha TX81z waveforms\nBy Mark Holt\n"
+
+NumFrames=8
+
+Wave target=aux1 "1*phase" //Replace Integer with desired frequency
+
+//OPL3_W1
+Wave start=0 end=0 "sin(2*pi*aux1)"
+//OPL3_W2
+Wave start=1 end=1 "(2*asin(sin(2*pi*aux1))/pi)^3"
+//W3
+Envelope L0=0 T1=0 L1=1 T2=0.5 L2=0 T3=1 L3=0
+Wave start=2 end=2 "sin(pi*env(aux1%1))"
+//W4
+Envelope L0=0 T1=0 L1=1 T2=0.5 L2=0 T3=1 L3=0
+Wave start=3 end=3 "(2*asin(sin(pi*env((aux1)%1)))/pi)^3"
+//W5
+Envelope L0=0 T1=0 L1=2 T2=0.5 L2=0 T3=1 L3=0
+Wave start=4 end=4 "sin(-pi*env(aux1%1))"
+//W6
+Envelope L0=0 T1=0 L1=2 T2=0.5 L2=0 T3=1 L3=0
+Wave start=5 end=5 "(2*asin(sin(-pi*env(aux1%1)))/pi)^3"
+//W7
+Envelope L0=0 T1=0 L1=0 T2=0.25 L2=1 T3=0 L3=0 T4=0.25 L4=1 T5=0 L5=0 T6=0.5 L6=0
+Wave start=6 end=6 "(sin(pi*env(aux1%1)))"
+//W8
+Envelope L0=0 T1=0 L1=0 T2=0.25 L2=1 T3=0 L3=0 T4=0.25 L4=1 T5=0 L5=0 T6=0.5 L6=0
+Wave start=7 end=7 "(2*asin(sin(pi*env(aux1%1)))/pi)^3"
+
+Normalize Metric="Peak" Base=each
